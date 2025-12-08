@@ -1,0 +1,118 @@
+{% extends "base.html" %}
+{% block title %}View Applicants{% endblock %}
+
+{% block content %}
+
+<div style="
+    max-width: 1100px;
+    margin: 30px auto;
+    padding: 25px;
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 8px 22px rgba(0,0,0,0.1);
+">
+
+    <h2 style="
+        font-size: 30px;
+        font-weight: 700;
+        color: #2a2a72;
+        text-align: center;
+        margin-bottom: 25px;
+    ">
+        Applicants for "{{ job.title }}"
+    </h2>
+
+    <!-- Applicants Table -->
+    <table style="
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+        font-size: 15px;
+    ">
+        <thead>
+            <tr style="
+                background: linear-gradient(90deg, #2a2a72, #009ffd);
+                color: white;
+                text-align: left;
+            ">
+                <th style="padding: 14px; border-top-left-radius: 10px;">Applicant</th>
+                <th style="padding: 14px;">Email</th>
+                <th style="padding: 14px;">Date Applied</th>
+                <th style="padding: 14px;">CV</th>
+                <th style="padding: 14px; border-top-right-radius: 10px;"></th>
+            </tr>
+        </thead>
+
+        <tbody>
+        {% for app in applications %}
+            <tr style="
+                background: #f9fbff;
+                border-bottom: 1px solid #e3e8f0;
+                transition: 0.3s ease;
+            " onmouseover="this.style.background='#eef4ff'"
+              onmouseout="this.style.background='#f9fbff'">
+
+                <td style="padding: 14px; font-weight: 600;">{{ app.name }}</td>
+                <td style="padding: 14px;">{{ app.email }}</td>
+                <td style="padding: 14px;">{{ app.created_at }}</td>
+
+                <!-- Download CV Button -->
+                <td style="padding: 14px;">
+                    <a href="{{ url_for('static', filename='uploads/cv/' ~ app.cv_filename) }}"
+                       target="_blank"
+                       style="
+                            background: #2a2a72;
+                            color: white;
+                            padding: 8px 14px;
+                            border-radius: 8px;
+                            text-decoration: none;
+                            font-size: 14px;
+                            font-weight: 600;
+                            transition: 0.3s ease;
+                            box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+                       "
+                       onmouseover="this.style.opacity='0.85'"
+                       onmouseout="this.style.opacity='1'">
+                        Download CV
+                    </a>
+                </td>
+
+                <!-- Details Button -->
+                <td style="padding: 14px;">
+                    <a href="{{ url_for('admin.applicant_details', application_id=app.id) }}"
+                       style="
+                            background: #6c757d;
+                            color: white;
+                            padding: 8px 14px;
+                            border-radius: 8px;
+                            text-decoration: none;
+                            font-size: 14px;
+                            font-weight: 600;
+                            transition: 0.3s ease;
+                            box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+                       "
+                       onmouseover="this.style.opacity='0.85'"
+                       onmouseout="this.style.opacity='1'">
+                        Details
+                    </a>
+                </td>
+            </tr>
+
+        {% else %}
+            <tr>
+                <td colspan="5" style="
+                    padding: 18px;
+                    text-align: center;
+                    font-size: 16px;
+                    color: #555;
+                ">
+                    No applicants yet.
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+</div>
+
+{% endblock %}

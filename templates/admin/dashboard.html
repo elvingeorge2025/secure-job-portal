@@ -1,0 +1,128 @@
+{% extends "base.html" %}
+{% block title %}Admin Dashboard{% endblock %}
+
+{% block content %}
+
+<div style="
+    max-width: 1000px;
+    margin: 20px auto;
+">
+
+    <h2 style="
+        font-size: 32px;
+        font-weight: 700;
+        color: #2a2a72;
+        text-align: center;
+        margin-bottom: 30px;
+    ">
+        Admin Dashboard
+    </h2>
+
+    <!-- STAT CARDS -->
+    <div style="
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-bottom: 35px;
+    ">
+        <!-- Open Jobs -->
+        <div style="
+            background: white;
+            padding: 25px;
+            border-radius: 14px;
+            width: 280px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.10);
+            border-left: 6px solid #009ffd;
+        ">
+            <p style="font-size: 18px; font-weight: 600; color: #2a2a72; margin: 0;">Open Jobs</p>
+            <p style="
+                font-size: 36px;
+                font-weight: 700;
+                margin-top: 10px;
+                color: #333;
+            ">{{ stats.open_jobs }}</p>
+        </div>
+
+        <!-- Total Applications -->
+        <div style="
+            background: white;
+            padding: 25px;
+            border-radius: 14px;
+            width: 280px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.10);
+            border-left: 6px solid #2a2a72;
+        ">
+            <p style="font-size: 18px; font-weight: 600; color: #2a2a72; margin: 0;">Total Applications</p>
+            <p style="
+                font-size: 36px;
+                font-weight: 700;
+                margin-top: 10px;
+                color: #333;
+            ">{{ stats.total_applications }}</p>
+        </div>
+
+        <!-- Today Applications -->
+        <div style="
+            background: white;
+            padding: 25px;
+            border-radius: 14px;
+            width: 280px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.10);
+            border-left: 6px solid #ff7b00;
+        ">
+            <p style="font-size: 18px; font-weight: 600; color: #2a2a72; margin: 0;">Applications Today</p>
+            <p style="
+                font-size: 36px;
+                font-weight: 700;
+                margin-top: 10px;
+                color: #333;
+            ">{{ stats.applications_today }}</p>
+        </div>
+    </div>
+
+    <!-- ACTION BUTTONS -->
+    <div style="text-align: center; margin-top: 25px;">
+
+        <a href="{{ url_for('admin.create_job') }}"
+           style="
+                display: inline-block;
+                background: linear-gradient(90deg, #2a2a72, #009ffd);
+                color: white;
+                padding: 14px 28px;
+                border-radius: 10px;
+                text-decoration: none;
+                font-size: 18px;
+                font-weight: 600;
+                margin-right: 18px;
+                transition: 0.3s ease;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+           "
+           onmouseover="this.style.opacity='0.9'"
+           onmouseout="this.style.opacity='1'">
+            + Create Job
+        </a>
+
+        <a href="{{ url_for('admin.manage_jobs') }}"
+           style="
+                display: inline-block;
+                background: #6c757d;
+                color: white;
+                padding: 14px 28px;
+                border-radius: 10px;
+                text-decoration: none;
+                font-size: 18px;
+                font-weight: 600;
+                transition: 0.3s ease;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+           "
+           onmouseover="this.style.opacity='0.9'"
+           onmouseout="this.style.opacity='1'">
+            Manage Jobs
+        </a>
+
+    </div>
+
+</div>
+
+{% endblock %}

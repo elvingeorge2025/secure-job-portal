@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+{% block title %}Register{% endblock %}
+
+{% block content %}
+
+<div style="
+    max-width: 500px;
+    margin: 50px auto;
+    padding: 35px;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(6px);
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+">
+
+    <h2 style="
+        text-align: center;
+        font-weight: 700;
+        margin-bottom: 25px;
+        font-size: 26px;
+        color: #2a2a72;
+    ">
+        Create Your Account
+    </h2>
+
+    <form method="post" style="margin-top: 10px;">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+        <!-- Name -->
+        <label style="font-size: 14px; font-weight: 600; color: #333;">Name</label>
+        <input type="text" name="name" required style="
+            width: 100%; padding: 12px; margin: 8px 0 18px 0;
+            border: 1px solid #ccc; border-radius: 10px;
+            font-size: 15px; transition: 0.3s ease;
+        " onfocus="this.style.borderColor='#2a2a72'">
+
+        <!-- Email -->
+        <label style="font-size: 14px; font-weight: 600; color: #333;">Email</label>
+        <input type="email" name="email" required style="
+            width: 100%; padding: 12px; margin: 8px 0 18px 0;
+            border: 1px solid #ccc; border-radius: 10px;
+            font-size: 15px; transition: 0.3s ease;
+        " onfocus="this.style.borderColor='#2a2a72'">
+
+        <!-- Phone -->
+        <label style="font-size: 14px; font-weight: 600; color: #333;">Phone</label>
+        <input type="text" name="phone" style="
+            width: 100%; padding: 12px; margin: 8px 0 18px 0;
+            border: 1px solid #ccc; border-radius: 10px;
+            font-size: 15px; transition: 0.3s ease;
+        " onfocus="this.style.borderColor='#2a2a72'">
+
+        <!-- Password -->
+        <label style="font-size: 14px; font-weight: 600; color: #333;">Password</label>
+        <input type="password" name="password" required style="
+            width: 100%; padding: 12px; margin: 8px 0 18px 0;
+            border: 1px solid #ccc; border-radius: 10px;
+            font-size: 15px; transition: 0.3s ease;
+        " onfocus="this.style.borderColor='#2a2a72'">
+
+        <!-- Confirm Password -->
+        <label style="font-size: 14px; font-weight: 600; color: #333;">Confirm Password</label>
+        <input type="password" name="confirm_password" required style="
+            width: 100%; padding: 12px; margin: 8px 0 25px 0;
+            border: 1px solid #ccc; border-radius: 10px;
+            font-size: 15px; transition: 0.3s ease;
+        " onfocus="this.style.borderColor='#2a2a72'">
+
+        <!-- Submit Button -->
+        <button type="submit" style="
+            width: 100%;
+            background: linear-gradient(90deg, #2a2a72, #009ffd);
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 10px;
+            font-size: 17px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        " onmouseover="this.style.opacity='0.9'"
+          onmouseout="this.style.opacity='1'">
+            Register
+        </button>
+    </form>
+
+    <p style="
+        text-align: center;
+        margin-top: 18px;
+        font-size: 14px;
+        color: #555;
+    ">
+        Already have an account?
+        <a href="{{ url_for('auth.login') }}" style="
+            color: #009ffd;
+            font-weight: 600;
+            text-decoration: none;
+        ">Login here</a>
+    </p>
+
+</div>
+
+{% endblock %}

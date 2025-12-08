@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+{% block title %}My Applications{% endblock %}
+
+{% block content %}
+
+<div style="
+    max-width: 1000px;
+    margin: 35px auto;
+    padding: 25px;
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 8px 22px rgba(0,0,0,0.1);
+">
+
+    <h2 style="
+        font-size: 30px;
+        font-weight: 700;
+        color: #2a2a72;
+        text-align: center;
+        margin-bottom: 25px;
+    ">
+        My Applications
+    </h2>
+
+    <table style="
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 10px;
+        font-size: 15px;
+    ">
+        <thead>
+            <tr style="
+                background: linear-gradient(90deg, #2a2a72, #009ffd);
+                color: white;
+                text-align: left;
+            ">
+                <th style="padding: 14px; border-top-left-radius: 10px;">Job</th>
+                <th style="padding: 14px;">Date Applied</th>
+                <th style="padding: 14px;">Status</th>
+                <th style="padding: 14px; border-top-right-radius: 10px;">CV File</th>
+            </tr>
+        </thead>
+
+        <tbody>
+        {% for app in applications %}
+            <tr style="
+                background: #f9fbff;
+                border-bottom: 1px solid #e3e8f0;
+                transition: 0.3s ease;
+            "
+            onmouseover="this.style.background='#eef4ff'"
+            onmouseout="this.style.background='#f9fbff'">
+
+                <td style="padding: 14px; font-weight: 600;">{{ app.job_title }}</td>
+                <td style="padding: 14px;">{{ app.created_at }}</td>
+                <td style="padding: 14px; font-weight: 600;">
+                    {% if app.status == 'submitted' %}
+                        <span style="
+                            color: #2a2a72;
+                            font-weight: 700;
+                        ">Submitted</span>
+                    {% elif app.status == 'reviewed' %}
+                        <span style="
+                            color: #009ffd;
+                            font-weight: 700;
+                        ">Reviewed</span>
+                    {% elif app.status == 'rejected' %}
+                        <span style="
+                            color: #d9534f;
+                            font-weight: 700;
+                        ">Rejected</span>
+                    {% else %}
+                        {{ app.status }}
+                    {% endif %}
+                </td>
+                <td style="padding: 14px;">{{ app.cv_filename }}</td>
+            </tr>
+
+        {% else %}
+            <tr>
+                <td colspan="4" style="
+                    padding: 18px;
+                    text-align: center;
+                    font-size: 16px;
+                    color: #777;
+                ">
+                    No applications yet.
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+
+    </table>
+
+</div>
+
+{% endblock %}

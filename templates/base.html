@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>{% block title %}Secure Job Portal{% endblock %}</title>
+
+    <!-- Google Font for premium look -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f0f2f5;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Premium Navbar */
+        .navbar {
+            background: linear-gradient(90deg, #2a2a72, #009ffd);
+            padding: 15px 40px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+        }
+
+        .navbar a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 15px;
+            padding: 8px 14px;
+            border-radius: 6px;
+            transition: 0.3s ease;
+        }
+
+        .navbar a:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        /* Main container with premium card look */
+        .container {
+            max-width: 1100px;
+            margin: 35px auto;
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 14px;
+            box-shadow: 0px 8px 20px rgba(0,0,0,0.07);
+        }
+
+        /* Flash Messages */
+        .flash {
+            padding: 14px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+
+        .flash-success {
+            background: #d1f7d6;
+            color: #146c34;
+        }
+
+        .flash-danger {
+            background: #fde2e1;
+            color: #b02a37;
+        }
+
+        .flash-info {
+            background: #d7ecff;
+            color: #084298;
+        }
+    </style>
+
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <div class="navbar">
+        <a href="{{ url_for('home') }}">Home</a>
+        <a href="{{ url_for('job.jobs_list') }}">Jobs</a>
+
+        {% if session.get('user_id') %}
+            {% if session.get('role') == 'applicant' %}
+                <a href="{{ url_for('applicant.dashboard') }}">Applicant Dashboard</a>
+            {% elif session.get('role') == 'admin' %}
+                <a href="{{ url_for('admin.dashboard') }}">Admin Dashboard</a>
+            {% endif %}
+            <a href="{{ url_for('auth.logout') }}">Logout</a>
+        {% else %}
+            <a href="{{ url_for('auth.login') }}">Login</a>
+            <a href="{{ url_for('auth.register') }}">Register</a>
+        {% endif %}
+    </div>
+
+    <!-- MAIN CONTENT CARD -->
+    <div class="container">
+        {% with messages = get_flashed_messages(with_categories=True) %}
+          {% if messages %}
+            {% for category, msg in messages %}
+              <div class="flash flash-{{ category }}">{{ msg }}</div>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+        
+        {% block content %}{% endblock %}
+    </div>
+
+</body>
+</html>

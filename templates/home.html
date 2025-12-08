@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block title %}Home - Secure Job Portal{% endblock %}
+
+{% block content %}
+
+<div style="
+    text-align: center;
+    padding: 60px 20px;
+    background: linear-gradient(135deg, #009ffd 0%, #2a2a72 100%);
+    border-radius: 16px;
+    color: white;
+    box-shadow: 0 8px 18px rgba(0,0,0,0.15);
+">
+
+    <h1 style="
+        font-size: 38px;
+        font-weight: 700;
+        margin-bottom: 20px;
+    ">
+        Secure Job Posting & Recruitment Portal
+    </h1>
+
+    <p style="
+        font-size: 18px;
+        font-weight: 300;
+        margin-bottom: 35px;
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+        line-height: 1.6;
+    ">
+        Browse premium job opportunities and apply securely with confidence.
+        Your privacy, security, and career growth — all in one place.
+    </p>
+
+    <a href="{{ url_for('job.jobs_list') }}"
+       style="
+            background: #ffffff;
+            color: #2a2a72;
+            padding: 14px 28px;
+            border-radius: 10px;
+            font-size: 18px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.3s ease-in-out;
+            box-shadow: 0px 4px 10px rgba(0,0,0,0.15);
+       "
+       onmouseover="this.style.background='#f0f0f0'"
+       onmouseout="this.style.background='#ffffff'">
+        View Jobs →
+    </a>
+
+</div>
+
+{% endblock %}

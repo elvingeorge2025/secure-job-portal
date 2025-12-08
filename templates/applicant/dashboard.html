@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% block title %}Applicant Dashboard{% endblock %}
+
+{% block content %}
+
+<div style="
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 35px;
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 8px 22px rgba(0,0,0,0.1);
+    text-align: center;
+">
+
+    <h2 style="
+        font-size: 30px;
+        font-weight: 700;
+        color: #2a2a72;
+        margin-bottom: 10px;
+    ">
+        Welcome, {{ user.name }}
+    </h2>
+
+    <p style="
+        font-size: 16px;
+        color: #555;
+        margin-bottom: 25px;
+    ">
+        Role: <strong>Applicant</strong>
+    </p>
+
+    <!-- Action Buttons -->
+    <div style="margin-top: 25px;">
+
+        <!-- Edit Profile Button -->
+        <a href="{{ url_for('applicant.edit_profile') }}"
+           style="
+                display: inline-block;
+                background: #6c757d;
+                color: white;
+                padding: 12px 22px;
+                border-radius: 10px;
+                text-decoration: none;
+                margin-right: 15px;
+                font-size: 16px;
+                font-weight: 600;
+                transition: 0.3s ease;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+           "
+           onmouseover="this.style.opacity='0.85'"
+           onmouseout="this.style.opacity='1'">
+            Edit Profile
+        </a>
+
+        <!-- My Applications Button -->
+        <a href="{{ url_for('applicant.my_applications') }}"
+           style="
+                display: inline-block;
+                background: linear-gradient(90deg, #2a2a72, #009ffd);
+                color: white;
+                padding: 12px 22px;
+                border-radius: 10px;
+                text-decoration: none;
+                font-size: 16px;
+                font-weight: 600;
+                transition: 0.3s ease;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+           "
+           onmouseover="this.style.opacity='0.9'"
+           onmouseout="this.style.opacity='1'">
+            My Applications
+        </a>
+
+    </div>
+
+</div>
+
+{% endblock %}

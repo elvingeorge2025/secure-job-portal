@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+{% block title %}Login{% endblock %}
+
+{% block content %}
+
+<div style="
+    max-width: 420px;
+    margin: 50px auto;
+    padding: 35px;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(6px);
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+">
+
+    <h2 style="
+        text-align: center;
+        font-weight: 700;
+        margin-bottom: 25px;
+        font-size: 26px;
+        color: #2a2a72;
+    ">
+        Login to Your Account
+    </h2>
+
+    <form method="post" style="margin-top: 10px;">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+        <label style="
+            font-size: 14px;
+            font-weight: 600;
+            color: #333;
+        ">Email</label>
+        <input type="email" name="email" required style="
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0 18px 0;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            font-size: 15px;
+            transition: 0.3s ease;
+        " onfocus="this.style.borderColor='#2a2a72'">
+
+        <label style="
+            font-size: 14px;
+            font-weight: 600;
+            color: #333;
+        ">Password</label>
+        <input type="password" name="password" required style="
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0 25px 0;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            font-size: 15px;
+            transition: 0.3s ease;
+        " onfocus="this.style.borderColor='#2a2a72'">
+
+        <button type="submit" style="
+            width: 100%;
+            background: linear-gradient(90deg, #2a2a72, #009ffd);
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 10px;
+            font-size: 17px;
+            cursor: pointer;
+            margin-top: 5px;
+            font-weight: 600;
+            transition: 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        "
+        onmouseover="this.style.opacity='0.9'"
+        onmouseout="this.style.opacity='1'">
+            Login
+        </button>
+
+    </form>
+
+    <p style="
+        text-align: center;
+        margin-top: 18px;
+        font-size: 14px;
+        color: #555;
+    ">
+        Don't have an account?
+        <a href="{{ url_for('auth.register') }}" style="
+            color: #009ffd;
+            font-weight: 600;
+            text-decoration: none;
+        ">Register here</a>
+    </p>
+
+</div>
+
+{% endblock %}

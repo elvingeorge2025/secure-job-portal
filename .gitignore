@@ -1,0 +1,10 @@
+venv/
+__pycache__/
+*.pyc
+
+.env
+logs/
+static/uploads/cv/
+instance/
+app.db
+*.db

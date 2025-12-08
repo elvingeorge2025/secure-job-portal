@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block title %}Server Error{% endblock %}
+
+{% block content %}
+
+<div style="
+    max-width: 600px;
+    margin: 60px auto;
+    padding: 40px;
+    background: #ffffff;
+    border-radius: 16px;
+    text-align: center;
+    box-shadow: 0 8px 22px rgba(0,0,0,0.12);
+">
+
+    <h2 style="
+        font-size: 36px;
+        font-weight: 700;
+        color: #d9534f;
+        margin-bottom: 15px;
+    ">
+        500 - Internal Server Error
+    </h2>
+
+    <p style="
+        font-size: 17px;
+        color: #555;
+        margin-bottom: 25px;
+        line-height: 1.5;
+    ">
+        Something went wrong on our end.<br>
+        The incident has been logged, and our team is reviewing it.
+    </p>
+
+    <a href="{{ url_for('home') }}"
+       style="
+            display: inline-block;
+            background: linear-gradient(90deg, #2a2a72, #009ffd);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-size: 17px;
+            font-weight: 600;
+            transition: 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+       "
+       onmouseover="this.style.opacity='0.9'"
+       onmouseout="this.style.opacity='1'">
+        Return to Home
+    </a>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+{% block title %}Edit Profile{% endblock %}
+
+{% block content %}
+
+<div style="
+    max-width: 700px;
+    margin: 40px auto;
+    padding: 35px;
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 8px 22px rgba(0,0,0,0.1);
+">
+
+    <h2 style="
+        font-size: 30px;
+        font-weight: 700;
+        color: #2a2a72;
+        text-align: center;
+        margin-bottom: 25px;
+    ">
+        Edit Profile
+    </h2>
+
+    <form method="post">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+        <!-- Name -->
+        <label style="font-weight: 600; margin-top: 12px; display:block;">
+            Name
+        </label>
+        <input type="text" name="name" value="{{ user.name }}" required
+               style="
+                    width: 100%;
+                    padding: 12px;
+                    border: 1px solid #ccc;
+                    border-radius: 10px;
+                    font-size: 15px;
+                    margin-top: 6px;
+                    transition: 0.3s ease;
+               "
+               onfocus="this.style.borderColor='#2a2a72'">
+
+        <!-- Phone -->
+        <label style="font-weight: 600; margin-top: 20px; display:block;">
+            Phone
+        </label>
+        <input type="text" name="phone" value="{{ user.phone }}"
+               style="
+                    width: 100%;
+                    padding: 12px;
+                    border: 1px solid #ccc;
+                    border-radius: 10px;
+                    font-size: 15px;
+                    margin-top: 6px;
+                    transition: 0.3s ease;
+               "
+               onfocus="this.style.borderColor='#2a2a72'">
+
+        <!-- Bio -->
+        <label style="font-weight: 600; margin-top: 20px; display:block;">
+            Short Bio
+        </label>
+        <textarea name="bio" rows="4"
+                  style="
+                       width: 100%;
+                       padding: 12px;
+                       border: 1px solid #ccc;
+                       border-radius: 10px;
+                       font-size: 15px;
+                       margin-top: 6px;
+                       line-height: 1.5;
+                       transition: 0.3s ease;
+                  "
+                  onfocus="this.style.borderColor='#2a2a72'">{{ user.bio }}</textarea>
+
+        <!-- Save Button -->
+        <button type="submit"
+                style="
+                    width: 100%;
+                    margin-top: 28px;
+                    background: linear-gradient(90deg, #2a2a72, #009ffd);
+                    color: white;
+                    padding: 14px;
+                    border: none;
+                    border-radius: 10px;
+                    font-size: 18px;
+                    font-weight: 600;
+                    cursor: pointer;
+                    transition: 0.3s ease;
+                    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+                "
+                onmouseover="this.style.opacity='0.9'"
+                onmouseout="this.style.opacity='1'">
+            Save Profile
+        </button>
+
+    </form>
+
+</div>
+
+{% endblock %}

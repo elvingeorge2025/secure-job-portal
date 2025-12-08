@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+{% block title %}Apply for Job{% endblock %}
+
+{% block content %}
+
+<div style="
+    max-width: 700px;
+    margin: 40px auto;
+    padding: 35px;
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 8px 22px rgba(0,0,0,0.1);
+">
+
+    <h2 style="
+        font-size: 30px;
+        font-weight: 700;
+        color: #2a2a72;
+        text-align: center;
+        margin-bottom: 25px;
+    ">
+        Apply for: {{ job.title }}
+    </h2>
+
+    <form method="post" enctype="multipart/form-data">
+
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+        <!-- CV Upload -->
+        <label style="font-weight: 600; margin-top: 12px; display:block;">
+            Upload CV (PDF only)
+        </label>
+        <input type="file" name="cv" accept="application/pdf" required
+               style="
+                    width: 100%;
+                    padding: 12px;
+                    margin-top: 8px;
+                    border: 1px solid #ccc;
+                    border-radius: 10px;
+                    background: #f8f9fc;
+                    font-size: 15px;
+                    cursor: pointer;
+                    transition: 0.3s ease;
+               "
+               onfocus="this.style.borderColor='#2a2a72'">
+
+        <!-- Cover Letter -->
+        <label style="font-weight: 600; margin-top: 22px; display:block;">
+            Cover Letter
+        </label>
+        <textarea name="cover_letter" rows="5"
+                  style="
+                       width: 100%;
+                       padding: 12px;
+                       border: 1px solid #ccc;
+                       border-radius: 10px;
+                       font-size: 15px;
+                       margin-top: 8px;
+                       line-height: 1.6;
+                       transition: 0.3s ease;
+                  "
+                  onfocus="this.style.borderColor='#2a2a72'"></textarea>
+
+        <!-- Submit Button -->
+        <button type="submit"
+                style="
+                    width: 100%;
+                    margin-top: 28px;
+                    background: linear-gradient(90deg, #2a2a72, #009ffd);
+                    color: white;
+                    padding: 14px;
+                    border: none;
+                    border-radius: 10px;
+                    font-size: 18px;
+                    font-weight: 600;
+                    cursor: pointer;
+                    transition: 0.3s ease;
+                    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+                "
+                onmouseover="this.style.opacity='0.9'"
+                onmouseout="this.style.opacity='1'">
+            Submit Application
+        </button>
+
+    </form>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,163 @@
+{% extends "base.html" %}
+{% block title %}Edit Job{% endblock %}
+
+{% block content %}
+
+<div style="
+    max-width: 750px;
+    margin: 40px auto;
+    padding: 35px;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 8px 22px rgba(0,0,0,0.1);
+">
+
+    <h2 style="
+        font-size: 30px;
+        font-weight: 700;
+        color: #2a2a72;
+        text-align: center;
+        margin-bottom: 25px;
+    ">
+        Edit Job Posting
+    </h2>
+
+    <form method="post">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+        <!-- Job Title -->
+        <label style="font-weight: 600; margin-top: 12px; display:block;">Job Title</label>
+        <input type="text" name="title" value="{{ job.title }}" required
+               style="
+                    width: 100%;
+                    padding: 12px;
+                    border: 1px solid #ccc;
+                    border-radius: 10px;
+                    font-size: 15px;
+                    margin-top: 6px;
+                    transition: 0.3s ease;
+               "
+               onfocus="this.style.borderColor='#2a2a72'">
+
+        <!-- Description -->
+        <label style="font-weight: 600; margin-top: 20px; display:block;">Description</label>
+        <textarea name="description" rows="5" required
+                  style="
+                       width: 100%;
+                       padding: 12px;
+                       border: 1px solid #ccc;
+                       border-radius: 10px;
+                       font-size: 15px;
+                       margin-top: 6px;
+                       transition: 0.3s ease;
+                       line-height: 1.5;
+                  "
+                  onfocus="this.style.borderColor='#2a2a72'">{{ job.description }}</textarea>
+
+        <!-- Requirements -->
+        <label style="font-weight: 600; margin-top: 20px; display:block;">Requirements</label>
+        <textarea name="requirements" rows="4"
+                  style="
+                       width: 100%;
+                       padding: 12px;
+                       border: 1px solid #ccc;
+                       border-radius: 10px;
+                       font-size: 15px;
+                       margin-top: 6px;
+                       transition: 0.3s ease;
+                       line-height: 1.5;
+                  "
+                  onfocus="this.style.borderColor='#2a2a72'">{{ job.requirements }}</textarea>
+
+        <!-- Salary -->
+        <label style="font-weight: 600; margin-top: 20px; display:block;">Salary</label>
+        <input type="text" name="salary" value="{{ job.salary }}"
+               style="
+                    width: 100%;
+                    padding: 12px;
+                    border: 1px solid #ccc;
+                    border-radius: 10px;
+                    font-size: 15px;
+                    margin-top: 6px;
+                    transition: 0.3s ease;
+               "
+               onfocus="this.style.borderColor='#2a2a72'">
+
+        <!-- Location -->
+        <label style="font-weight: 600; margin-top: 20px; display:block;">Location</label>
+        <input type="text" name="location" value="{{ job.location }}"
+               style="
+                    width: 100%;
+                    padding: 12px;
+                    border: 1px solid #ccc;
+                    border-radius: 10px;
+                    font-size: 15px;
+                    margin-top: 6px;
+                    transition: 0.3s ease;
+               "
+               onfocus="this.style.borderColor='#2a2a72'">
+
+        <!-- Category -->
+        <label style="font-weight: 600; margin-top: 20px; display:block;">Category</label>
+        <input type="text" name="category" value="{{ job.category }}"
+               style="
+                    width: 100%;
+                    padding: 12px;
+                    border: 1px solid #ccc;
+                    border-radius: 10px;
+                    font-size: 15px;
+                    margin-top: 6px;
+                    transition: 0.3s ease;
+               "
+               onfocus="this.style.borderColor='#2a2a72'">
+
+        <!-- Status Dropdown -->
+        <label style="font-weight: 600; margin-top: 20px; display:block;">Status</label>
+        <select name="status"
+                style="
+                    width: 100%;
+                    padding: 12px;
+                    border: 1px solid #ccc;
+                    border-radius: 10px;
+                    font-size: 15px;
+                    margin-top: 6px;
+                    transition: 0.3s ease;
+                    background: #f8f9fc;
+               "
+               onfocus="this.style.borderColor='#2a2a72'">
+
+            <option value="active" {% if job.status == 'active' %}selected{% endif %}>
+                Active
+            </option>
+
+            <option value="closed" {% if job.status == 'closed' %}selected{% endif %}>
+                Closed
+            </option>
+        </select>
+
+        <!-- Save Button -->
+        <button type="submit"
+                style="
+                    width: 100%;
+                    margin-top: 30px;
+                    background: linear-gradient(90deg, #2a2a72, #009ffd);
+                    color: white;
+                    padding: 14px;
+                    border: none;
+                    border-radius: 10px;
+                    font-size: 18px;
+                    font-weight: 600;
+                    cursor: pointer;
+                    transition: 0.3s ease;
+                    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+                "
+                onmouseover="this.style.opacity='0.9'"
+                onmouseout="this.style.opacity='1'">
+            Save Changes
+        </button>
+
+    </form>
+
+</div>
+
+{% endblock %}
